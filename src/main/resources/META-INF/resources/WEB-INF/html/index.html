@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #17a2b8;
+        }
+
+        .table {
+            background-color: #fff;
+        }
+
+        .btn-primary {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+
+        .btn-primary:hover {
+            background-color: #138496;
+            border-color: #138496;
+        }
+
+        /* BEGIN: Header styling */
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .form-inline {
+            margin-left: auto;
+        }
+
+        .form-control {
+            width: 200px;
+        }
+
+        .btn-primary.ml-2 {
+            margin-left: 10px;
+        }
+        /* END: Header styling */
+
+        /* BEGIN: Body styling */
+        .container {
+            margin-top: 50px;
+        }
+
+        .col-md-12 {
+            text-align: center;
+        }
+
+        .table th {
+            font-weight: bold;
+        }
+
+        .table td {
+            vertical-align: middle;
+        }
+
+        .btn-primary.btn-sm {
+            margin-right: 5px;
+        }
+        /* END: Body styling */
+
+        /* BEGIN: Footer styling */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 10px;
+            background-color: #f8f9fa;
+        }
+        /* END: Footer styling */
+    </style>
+</head>
+
+<body>
+    <!-- BEGIN: Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Contact Management System</a>
+        <form class="form-inline float-right">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+            <a href="#" class="btn btn-primary ml-2">Add Contact</a>
+        </form>
+    </nav>
+    <!-- END: Header -->
+
+    <!-- BEGIN: Body -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Contact List</h2>
+            </div>
+        </div>
+
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- BEGIN: Dynamic Table Rows -->
+                <tr>
+                    <td>John Doe</td>
+                    <td>johndoe@example.com</td>
+                    <td>1234567890</td>
+                    <td>
+                        <a href="#" class="btn btn-primary btn-sm">Details</a>
+                        <a href="#" class="btn btn-primary btn-sm">Update</a>
+                        <a href="#" class="btn btn-primary btn-sm">Delete</a>
+                    </td>
+                </tr>
+                <!-- END: Dynamic Table Rows -->
+            </tbody>
+        </table>
+    </div>
+    <!-- END: Body -->
+
+    <!-- BEGIN: Footer -->
+    <footer>
+        <p>&copy; 2022, MJ Aguda</p>
+    </footer>
+    <!-- END: Footer -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
