@@ -10,6 +10,7 @@
     
 
     <!-- TODO: exclude style to a css file -->
+    <!-- <link href="../static/css/styles.css" rel="stylesheet"> -->
     <style>
         body {
             background-color: #f8f9fa;
@@ -35,6 +36,8 @@
             line-height: 1.5;
             border-radius: 0.25rem;
             transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            height: 40px; /* Added this line to set the height of the button */
+            width: 120px; /* Added this line to set the width of the button */
         }
 
         .btn-primary:hover {
@@ -90,24 +93,27 @@
             line-height: 1.5;
             border-radius: 0.25rem;
             transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            height: 40px; /* Added this line to set the height of all buttons */
+            width: 120px; /* Added this line to set the width of all buttons */
         }
         /* END: Restyled Buttons */
 
         /* BEGIN: Footer styling */
         footer {
             text-align: center;
-            padding: 10px;
+            padding: 0px;
             margin-top: auto;
             background-color: #17a2b8;
+            color: #fff;
         }
-        
         /* END: Footer styling */
+
     </style>
 </head>
 
 <body>
     
-    <th:block th:replace="commons/top-nav :: top-nav"></th:block>
+    <th:block th:replace="commons/header :: header"></th:block>
 
     <!-- BEGIN: Body -->
     <div class="container mt-5">
@@ -119,15 +125,7 @@
 
         <form class="form-inline float-right">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            
-            
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">
-                <a href="#" class="btn btn-primary my-2 my-sm-0">
-                    <i class="fas fa-search"></i>
-                </a>
-            </button> 
-
-            
+            <button class="btn btn-primary fas fa-search" type="submit"></button>            
             <a href="#" class="btn btn-success ml-2">Add Contact</a>
         </form>
 
