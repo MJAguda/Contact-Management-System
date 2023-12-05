@@ -1,0 +1,105 @@
+/* Header */
+header {
+    background-color: #007bff;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.logo {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Main */
+main {
+    padding: 20px;
+    margin-top: 60px;
+    /* Adjust this value to give space for the fixed header */
+    margin-bottom: 60px;
+    /* Adjust this value to give space for the fixed footer */
+}
+
+.pagetitle {
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    margin: auto;
+    margin-top: 10px;
+}
+
+.serach-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-form input {
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 300px;
+}
+
+.search-form input:focus,
+.search-form input:hover {
+    outline: none;
+    box-shadow: 0 0 10px 0 rgba(1, 41, 112, 0.15);
+    border: 1px solid rgba(1, 41, 112, 0.3);
+}
+
+/* Make Search Button into a magnifying glass icon */
+.search-form button {
+    border: 0;
+    padding: 0;
+    margin-left: -30px;
+    background: none;
+}
+
+.search-form button::before {
+    content: "\f002";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    outline: none;
+}
+
+/* Add Button */
+.btn-success {
+    /* background-color: #007bff; */
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+
+.contact-table {
+    overflow-x: auto;
+}
+
+.table thead th {
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    background-color: #007bff;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #fff;
+}
