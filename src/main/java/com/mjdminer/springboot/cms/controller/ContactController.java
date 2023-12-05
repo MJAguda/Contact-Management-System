@@ -17,13 +17,20 @@ public class ContactController {
         this.contactService = contactService;
     }
 
-    
-    // Mapping for localhost:8080/list-contacts
-    @RequestMapping("/list-contacts")
-    public List<Contact> listAllContacts(ModelMap model){
+    // Mapping for localhost:8080/
+    @RequestMapping("/")
+    public String listAllContacts(ModelMap model){
         List<Contact> contacts = contactService.getAllContacts();
         model.addAttribute("contacts", contacts);
-        //return to list-contacts.html
-        return contacts;
+        //return to index.html
+        return "index";
     }
+
+    // @RequestMapping("/list-contact")
+    // public List<Contact> listAllContacts(ModelMap model){
+    //     List<Contact> contacts = contactService.getAllContacts();
+    //     model.addAttribute("contacts", contacts);
+    //     //return to list-contacts.html
+    //     return contacts;
+    // }
 }
