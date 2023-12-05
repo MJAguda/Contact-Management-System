@@ -29,20 +29,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Tomcat Jasper -->
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- javax servlet -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
-
 		<!-- Thymeleaf -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -56,6 +42,13 @@
 			<optional>true</optional>
 			<scope>runtime</scope>
 		</dependency>
+
+		<!-- Spring Data JPA -->
+		<!-- <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency> -->
+
 	</dependencies>
 
 	<build>
