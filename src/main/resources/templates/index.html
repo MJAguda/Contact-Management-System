@@ -142,11 +142,11 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- BEGIN: Dynamic Table Rows -->
-                <tr>
-                    <td>John Doe</td>
-                    <td>johndoe@example.com</td>
-                    <td>1234567890</td>
+              <!-- BEGIN: Dynamic Table Rows -->
+                <tr th:each="contact : ${contacts}">
+                    <td th:text="${contact.firstName} + ' ' + ${contact.lastName}"></td>
+                    <td th:text="${contact.email}"></td>
+                    <td th:text="${contact.contactNumber}"></td>
                     <td>
                         <a href="#" class="btn btn-primary btn-sm">Details</a>
                         <a href="#" class="btn btn-primary btn-sm">Update</a>
@@ -164,6 +164,9 @@
         <p>&copy; 2022, MJ Aguda</p>
     </footer>
     <!-- END: Footer -->
+
+    <!-- Add commons/footer.html file to this line -->
+    
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
