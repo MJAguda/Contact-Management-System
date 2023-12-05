@@ -1,13 +1,6 @@
 package com.mjdminer.springboot.cms.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-
-@Entity
 public class Contact {
-    @Id
-    @GeneratedValue
     private int id;
 
     private String firstName;
@@ -21,6 +14,7 @@ public class Contact {
     }
 
     public Contact(int id, String firstName, String lastName, String address, String email, String contactNumber) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
