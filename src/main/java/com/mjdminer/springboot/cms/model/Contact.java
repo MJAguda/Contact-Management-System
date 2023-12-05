@@ -1,7 +1,15 @@
 package com.mjdminer.springboot.cms.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity
 public class Contact {
+    @Id
+    @GeneratedValue
     private int id;
+
     private String firstName;
     private String lastName;
     private String address;
@@ -12,7 +20,7 @@ public class Contact {
     public Contact() {
     }
 
-    public Contact(String firstName, String lastName, String address, String email, String contactNumber) {
+    public Contact(int id, String firstName, String lastName, String address, String email, String contactNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -21,14 +29,23 @@ public class Contact {
     }
 
     // Getters and Setters
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getFirstName() {
         return firstName;
     }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-
     }
+
     public String getLastName() {
         return lastName;
     }
