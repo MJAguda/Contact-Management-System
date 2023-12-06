@@ -8,40 +8,48 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.mjdminer.springboot.cms.model.Contact;
 import com.mjdminer.springboot.cms.services.ContactService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 @Controller
 public class ContactController {
     private ContactService contactService;
 
-    public ContactController(ContactService contactService){
+    public ContactController(ContactService contactService) {
         super();
         this.contactService = contactService;
     }
 
-    // Mapping for localhost:8080/
-    @RequestMapping("/")
-    public String listAllContacts(ModelMap model){
+    // GetMapping for localhost:8080/
+    @GetMapping("/")
+    public String listAllContacts(ModelMap model) {
         List<Contact> contacts = contactService.getAllContacts();
         model.addAttribute("contacts", contacts);
-        //return to index.html
+        // return to index.html
         return "index";
     }
 
-    // Mapping for localhost:8080/add-contact
+    // GetMapping for localhost:8080/add-contact
     @GetMapping("/add-contact")
-    public String addContact(ModelMap model){
-        //return to add-contact.html
-        return "add-contact";
+    public String showNewContactPage(ModelMap model) {
+        // return to contact.html
+        return "contact";
     }
-    
+
+    // PostMapping for localhost:8080/add-contact
+    @PostMapping("/add-contact")
+    public String addNewContactPage(@ModelAttribute("contact") Contact contact) {
+        contactService.addContact(contact.getFirstName(), contact.getLastName(), contact.getAddress(),
+                contact.getEmail(), contact.getContactNumber());
+        return "redirect:/";
+    }
 
     // @RequestMapping("/list-contact")
     // public List<Contact> listAllContacts(ModelMap model){
-    //     List<Contact> contacts = contactService.getAllContacts();
-    //     model.addAttribute("contacts", contacts);
-    //     //return to list-contacts.html
-    //     return contacts;
+    // List<Contact> contacts = contactService.getAllContacts();
+    // model.addAttribute("contacts", contacts);
+    // //return to list-contacts.html
+    // return contacts;
     // }
 }

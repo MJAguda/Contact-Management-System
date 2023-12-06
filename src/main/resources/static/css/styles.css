@@ -97,7 +97,7 @@ main {
     margin-bottom: 20px;
     text-align: center;
 }
- /* Start */
+/* Start
 #contactForm {
     width: 60%;
     margin: auto;
@@ -127,7 +127,6 @@ main {
 }
 
 #contactForm .btn {
-    /* Center the button */
     margin: auto;
     display: block;
     width: 100%;
@@ -139,7 +138,7 @@ main {
     color: #fff;
     font-weight: bold;
 }
-/* End */
+ End */
 
 .contact-table {
     overflow-x: auto;

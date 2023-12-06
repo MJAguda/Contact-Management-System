@@ -1,5 +1,6 @@
 package com.mjdminer.springboot.cms.services;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,5 +27,11 @@ public class ContactService {
     // Method to getAllContacts
     public List<Contact> getAllContacts(){
         return contacts;
+    }
+
+    // Method to addContact
+    public void addContact(String firstName, String lastName, String address, String email, String contactNumber){
+        Contact contact = new Contact(++count, firstName, lastName, address, email, contactNumber);
+        contacts.add(contact);
     }
 }
