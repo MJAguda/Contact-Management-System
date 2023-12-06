@@ -1,0 +1,54 @@
+
+    
+    <!-- Header -->
+    <th:block th:replace="commons/header :: header"></th:block>
+
+    <!-- ======= MAIN ======= -->
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Add Contact</h1>
+        </div><!-- End Page Title -->
+
+        
+            <!-- TODO: Add Fields and Style it -->
+            <div id="contactForm">
+                <!-- firstName -->
+                <div class="form-group">
+                    <label for="firstName">First Name:</label><br>
+                    <input type="text" id="firstName" name="firstName" class="form-control"><br>
+                </div>
+
+                <!-- lastName -->
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label><br>
+                    <input type="text" id="lastName" name="lastName" class="form-control"><br>
+                </div>
+
+                <!-- address -->
+                <div class="form-group">
+                    <label for="address">Address:</label><br>
+                    <input type="text" id="address" name="address" class="form-control"><br>
+                </div>
+
+                <!-- email -->
+                <div class="form-group">
+                    <label for="email">Email:</label><br>
+                    <input type="text" id="email" name="email" class="form-control"><br>
+                </div>
+
+                <!-- contactNumber -->
+                <div class="form-group">
+                    <label for="contactNumber">Contact Number:</label><br>
+                    <input type="text" id="contactNumber" name="contactNumber" class="form-control"><br>
+                </div>
+
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+
+        </main>
+        <!-- ======= End of MAIN ======= -->
+
+        <!-- Footer -->
+        <th:block th:replace="commons/footer :: footer"></th:block>
+
+    
