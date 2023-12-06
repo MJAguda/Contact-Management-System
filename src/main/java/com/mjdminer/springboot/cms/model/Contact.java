@@ -1,19 +1,22 @@
 package com.mjdminer.springboot.cms.model;
 
+import java.util.Arrays;
+
 public class Contact {
     private int id;
-
     private String firstName;
     private String lastName;
     private String address;
     private String email;
     private String contactNumber;
 
-    // Constructors
+    // Empty Contact Constructors
     public Contact() {
     }
 
+    // Contact Constructor that will take all fields
     public Contact(int id, String firstName, String lastName, String address, String email, String contactNumber) {
+        // super();
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,9 +24,15 @@ public class Contact {
         this.email = email;
         this.contactNumber = contactNumber;
     }
+    
+    // Contact Constructor that will take a string and split it into first and last name
+    public Contact(String string) {
+        String[] names = string.split(" ");
+        this.firstName = String.join(" ", Arrays.copyOfRange(names, 0, names.length - 1));
+        this.lastName = names[names.length - 1];
+    }
 
     // Getters and Setters
-
     public int getId() {
         return id;
     }
@@ -78,5 +87,5 @@ public class Contact {
         return "Contact [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", email="
                 + email + ", contactNumber=" + contactNumber + "]";
     }
-    
+
 }
