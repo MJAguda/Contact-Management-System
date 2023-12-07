@@ -1,5 +1,5 @@
 <!-- Header -->
-<th:block th:replace="commons/header :: header"></th:block>
+<th:block th:replace="~{commons/header.html :: header}"></th:block>
 
 <!-- ======= MAIN ======= -->
 <main id="main" class="main">
@@ -24,9 +24,9 @@
         <label for="contactNumber">Contact Number:</label>
         <input type="tel" id="contactNumber" name="contactNumber" required><br>
 
-        <input type="submit" value="Submit">
+        <input type="submit" value="Add">
     </form>
 </main>
 
 <!-- Footer -->
-<th:block th:replace="commons/footer :: footer"></th:block>
+<th:block th:replace="~{commons/footer.html :: footer}"></th:block>

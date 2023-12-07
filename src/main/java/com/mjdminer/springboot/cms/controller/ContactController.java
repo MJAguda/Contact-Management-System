@@ -1,16 +1,24 @@
 package com.mjdminer.springboot.cms.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mjdminer.springboot.cms.model.Contact;
 import com.mjdminer.springboot.cms.service.ContactService;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class ContactController {
@@ -57,8 +65,12 @@ public class ContactController {
      */
     @PostMapping("/add-contact")
     public String addNewContactPage(@ModelAttribute("contact") Contact contact) {
-        contactService.addContact(contact.getFirstName(), contact.getLastName(), contact.getAddress(),
-                contact.getEmail(), contact.getContactNumber());
+
+        contactService.addContact(  contact.getFirstName(), 
+                                    contact.getLastName(), 
+                                    contact.getAddress(),
+                                    contact.getEmail(), 
+                                    contact.getContactNumber());
         return "redirect:/";
     }
 
@@ -69,15 +81,28 @@ public class ContactController {
         return "redirect:/";
     }
 
-    // TODO: Handle special characters in every fields
     @GetMapping("/update-contact")
     public String showUpdateContactPage(@RequestParam int id, ModelMap model) {
         Contact contact = contactService.findById(id);
+
+        // // Decode the first name to handle special characters
+        // try {
+        //     contact.setFirstName(URLDecoder.decode(contact.getFirstName(), StandardCharsets.UTF_8.toString()));
+        // } catch (UnsupportedEncodingException e) {
+        //     // Handle the exception or log it
+        //     e.printStackTrace();
+        // }
 
         model.addAttribute("contact", contact);
 
         // return to contact.html
         return "update-contact";
     }
-
+    
+    // TODO: Update Button action
+    @PostMapping("/update-contact")
+    public String updateContact(@ModelAttribute("contact") Contact contact){
+        contactService.updateContact(contact);
+        return "redirect:/";
+    }
 }
