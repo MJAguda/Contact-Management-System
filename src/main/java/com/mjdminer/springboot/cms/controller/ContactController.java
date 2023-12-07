@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mjdminer.springboot.cms.model.Contact;
-import com.mjdminer.springboot.cms.services.ContactService;
+import com.mjdminer.springboot.cms.service.ContactService;
 
 @Controller
 public class ContactController {
@@ -62,6 +62,13 @@ public class ContactController {
         return "redirect:/";
     }
 
+    // GetMapping for localhost:8080/delete-contact?id=
+    @GetMapping("/delete-contact")
+    public String deleteContact(@RequestParam int id) {
+        contactService.deleteContactById(id);
+        return "redirect:/";
+    }
+
     @GetMapping("/update-contact")
     public String showUpdateContactPage(@RequestParam int id, ModelMap model) {
         Contact contact = contactService.findById(id);
@@ -71,5 +78,4 @@ public class ContactController {
         return "contact";
     }
 
-    
 }

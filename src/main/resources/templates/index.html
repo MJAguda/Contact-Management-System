@@ -26,9 +26,9 @@
                         <td th:text="${contact.email}"></td>
                         <td th:text="${contact.contactNumber}"></td>
                         <td>
-                            <a th:href="@{/details-todo(id=${contact.id})}" class="btn btn-primary btn-sm" id="detailsButton">Details</a>
-                            <a th:href="@{/update-todo(id=${contact.id})}" class="btn btn-primary btn-sm" id="updateButton">Update</a>
-                            <a th:href="@{/delete-todo(id=${contact.id})}" class="btn btn-danger btn-sm" id="deleteButton">Delete</a>
+                            <a th:href="@{/details-contact?id={id}(id=${contact.id})}" class="btn btn-primary btn-sm" id="detailsButton">Details</a>
+                            <a th:href="@{/update-contact?id={id}(id=${contact.id})}" class="btn btn-primary btn-sm" id="updateButton">Update</a>
+                            <a th:href="@{/delete-contact?id={id}(id=${contact.id})}" class="btn btn-danger btn-sm" id="deleteButton">Delete</a>
                         </td>
                     </tr>
                     <!-- END: Dynamic Table Rows -->

@@ -1,4 +1,4 @@
-package com.mjdminer.springboot.cms.services;
+package com.mjdminer.springboot.cms.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class ContactService {
         contacts.add(contact);
     }
 
-    private void deleteById(int id) {
+    public void deleteContactById(int id) {
         Predicate<? super Contact> predicate = contact -> contact.getId() == id; 
         contacts.removeIf(predicate);
     }
@@ -47,7 +47,7 @@ public class ContactService {
     }
 
     public void updateContact(Contact contact){
-        deleteById(contact.getId());
+        deleteContactById(contact.getId());
         contacts.add(contact);
     }
 }

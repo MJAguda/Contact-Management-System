@@ -16,7 +16,7 @@ import org.springframework.ui.ModelMap;
 
 import com.mjdminer.springboot.cms.controller.ContactController;
 import com.mjdminer.springboot.cms.model.Contact;
-import com.mjdminer.springboot.cms.services.ContactService;
+import com.mjdminer.springboot.cms.service.ContactService;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class CmsApplicationTests {
