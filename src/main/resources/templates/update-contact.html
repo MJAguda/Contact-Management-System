@@ -1,0 +1,32 @@
+<!-- Header -->
+<th:block th:replace="commons/header :: header"></th:block>
+
+<!-- ======= MAIN ======= -->
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1 id="pageTitle">h1</h1>
+    </div><!-- End Page Title -->
+
+    <!-- TODO: Style it -->
+    <form action="add-contact" method="POST" modelAttribute="contact">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" th:value="@{{firstName}(firstName=${contact.firstName})}" required><br>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" th:value="@{{lastName}(lastName=${contact.lastName})}" required><br>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" th:value="@{{address}(address=${contact.address})}" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:value="@{{email}(email=${contact.email})}" required><br>
+
+        <label for="contactNumber">Contact Number:</label>
+        <input type="tel" id="contactNumber" name="contactNumber" th:value="@{{contactNumber}(contactNumber=${contact.contactNumber})}" required><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</main>
+
+<!-- Footer -->
+<th:block th:replace="commons/footer :: footer"></th:block>

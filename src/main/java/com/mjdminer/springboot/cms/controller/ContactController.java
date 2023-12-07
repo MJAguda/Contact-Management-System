@@ -45,7 +45,7 @@ public class ContactController {
     @GetMapping("/add-contact")
     public String showNewContactPage(ModelMap model) {
         // return to contact.html
-        return "contact";
+        return "add-contact";
     }
 
     // PostMapping for localhost:8080/add-contact
@@ -69,13 +69,15 @@ public class ContactController {
         return "redirect:/";
     }
 
+    // TODO: Handle special characters in every fields
     @GetMapping("/update-contact")
     public String showUpdateContactPage(@RequestParam int id, ModelMap model) {
         Contact contact = contactService.findById(id);
+
         model.addAttribute("contact", contact);
 
         // return to contact.html
-        return "contact";
+        return "update-contact";
     }
 
 }

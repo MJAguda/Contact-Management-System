@@ -11,7 +11,7 @@ import com.mjdminer.springboot.cms.model.Contact;
 @Service
 public class ContactService {
     // ArrayList to store contacts
-    private static ArrayList<Contact> contacts = new ArrayList<Contact>();
+    private static List<Contact> contacts = new ArrayList<Contact>();
 
     // count for id for each contact
     private static int count = 0;
