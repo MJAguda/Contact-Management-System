@@ -1,23 +1,16 @@
 package com.mjdminer.springboot.cms.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mjdminer.springboot.cms.model.Contact;
 import com.mjdminer.springboot.cms.service.ContactService;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Controller
@@ -99,7 +92,6 @@ public class ContactController {
         return "update-contact";
     }
     
-    // TODO: Update Button action
     @PostMapping("/update-contact")
     public String updateContact(@ModelAttribute("contact") Contact contact){
         contactService.updateContact(contact);
