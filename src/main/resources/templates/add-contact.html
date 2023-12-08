@@ -3,12 +3,13 @@
 
 <!-- ======= MAIN ======= -->
 <main id="main" class="main">
-    <div class="pagetitle">
-        <h1 id="pageTitle">Add Contact</h1>
-    </div><!-- End Page Title -->
 
-    <!-- TODO: Style it -->
-    <form action="add-contact" method="POST" modelAttribute="contact">
+    <h1 id="pageTitle"></h1>
+
+    <form id="contact-form" action="add-contact" method="POST" modelAttribute="contact">
+        
+        <input type="hidden" id="id" name="id" required><br>
+        
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="firstName" required><br>
 
@@ -24,7 +25,7 @@
         <label for="contactNumber">Contact Number:</label>
         <input type="tel" id="contactNumber" name="contactNumber" required><br>
 
-        <input type="submit" value="Add">
+        <input type="submit" class="btn btn-success ml-2" value="Add">
     </form>
 </main>
 

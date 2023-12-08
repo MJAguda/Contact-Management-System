@@ -3,12 +3,11 @@
 
 <!-- ======= MAIN ======= -->
 <main id="main" class="main">
-    <div class="pagetitle">
-        <h1 id="pageTitle">Update Contact</h1>
-    </div><!-- End Page Title -->
+
+    <h1 id="pageTitle">Update</h1>
 
     <!-- TODO: Style it -->
-    <form action="update-contact" method="POST" modelAttribute="contact">
+    <form id="contact-form" action="update-contact" method="POST" modelAttribute="contact">
 
         <input type="hidden" id="id" name="id" th:value="${contact.id}" required><br>
 
@@ -27,7 +26,7 @@
         <label for="contactNumber">Contact Number:</label>
         <input type="tel" id="contactNumber" name="contactNumber" th:value="${contact.contactNumber}" required><br>
 
-        <input type="submit" value="Update">
+        <input type="submit" class="btn btn-success ml-2" value="Update">
     </form>
 </main>
 
