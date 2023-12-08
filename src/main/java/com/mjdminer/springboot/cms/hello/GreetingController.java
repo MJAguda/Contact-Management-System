@@ -13,4 +13,10 @@ public class GreetingController {
         model.put("message", "Hello World!");
         return "greeting";
     }
+
+    @GetMapping("responsive")
+    public String responsive(Map<String, Object> model) {
+        model.put("message", "Hello World!");
+        return "index-responsive";
+    }
 }
