@@ -97,4 +97,13 @@ public class ContactController {
         contactService.updateContact(contact);
         return "redirect:/";
     }
+
+    @GetMapping("/details-contact")
+    public String showDetailsContactPage(@RequestParam int id, ModelMap model) {
+        Contact contact = contactService.findById(id);
+        model.addAttribute("contact", contact);
+
+        // return to contact.html
+        return "details";
+    }
 }

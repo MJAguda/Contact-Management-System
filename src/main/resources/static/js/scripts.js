@@ -4,11 +4,41 @@ var currentEndpoint = window.location.pathname;
 // Define a function to set the text based on the endpoint
 function setPageTitle() {
     if (currentEndpoint.includes("/add-contact")) {
+        // Change the text for page title
         $("#pageTitle").text("Add Contact");
+
+        // Change Action URL for the form
+        $("contact-form").attr("action", "/add-contact");
+
+        // Change value of the button
+        $('.btn-success').val('Add');
     } else if (currentEndpoint.includes("/update-contact")) {
+        // Change text for page title
         $("#pageTitle").text("Update Contact");
+
+        // Change Action URL for the form
+        $(".contact-form").attr("action", "/update-contact");
+
+        // Change value of the button
+        $('.btn-success').val('Update');
     } else if (currentEndpoint.includes("/details-contact")) {
+        
+        // Change the text for page title
         $("#pageTitle").text("Contact Details");
+
+        // Change Action URL for the form
+        $(".contact-form").attr("action", "/");
+
+        // Disable the input fields
+        $("#id").prop('disabled', true);
+        $("#firstName").prop('disabled', true);
+        $("#lastName").prop('disabled', true);
+        $("#address").prop('disabled', true);
+        $("#email").prop('disabled', true);
+        $("#contactNumber").prop('disabled', true);
+
+        // Change value of the button
+        $('.btn-success').val('Home');
     } else {
         // Handle other cases or set a default title
         $("#pageTitle").text("Default Title");
