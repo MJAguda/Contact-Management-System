@@ -28,9 +28,10 @@ function setPageTitle() {
 
         // Change Action URL for the form
         $(".contact-form").attr("action", "/");
+        // Change Action URL for the form dynamically based on the current endpoint
 
         // Disable the input fields
-        $("#id").prop('disabled', true);
+        // $("#id").prop('disabled', true);
         $("#firstName").prop('disabled', true);
         $("#lastName").prop('disabled', true);
         $("#address").prop('disabled', true);

@@ -46,7 +46,7 @@ public class ContactController {
     @GetMapping("/add-contact")
     public String showNewContactPage(ModelMap model) {
         // return to contact.html
-        return "add-contact";
+        return "details";
     }
 
     // PostMapping for localhost:8080/add-contact
@@ -78,18 +78,10 @@ public class ContactController {
     public String showUpdateContactPage(@RequestParam int id, ModelMap model) {
         Contact contact = contactService.findById(id);
 
-        // // Decode the first name to handle special characters
-        // try {
-        //     contact.setFirstName(URLDecoder.decode(contact.getFirstName(), StandardCharsets.UTF_8.toString()));
-        // } catch (UnsupportedEncodingException e) {
-        //     // Handle the exception or log it
-        //     e.printStackTrace();
-        // }
-
         model.addAttribute("contact", contact);
 
         // return to contact.html
-        return "update-contact";
+        return "details";
     }
     
     @PostMapping("/update-contact")
@@ -105,5 +97,10 @@ public class ContactController {
 
         // return to contact.html
         return "details";
+    }
+
+    @PostMapping("/details-contact")
+    public String backToIndex() {
+        return "redirect:/";
     }
 }

@@ -7,9 +7,10 @@
     <h1 id="pageTitle">Dynamic H1</h1>
 
     <!-- TODO: Style it -->
-    <form id="contact-form" action="update-contact" method="POST" modelAttribute="contact">
+    <form id="contact-form" method="POST" modelAttribute="contact">
 
-        <input type="hidden" id="id" name="id" th:value="${contact.id}" required><br>
+        <!-- TODO: Figure out why this line is returning a 400 status code -->
+        <!-- <input type="hidden" id="id" name="id" th:value="${contact.id}" required><br> -->
 
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="firstName" th:value="${contact?.firstName}" required><br>
