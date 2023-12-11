@@ -100,13 +100,13 @@ main {
 /* Start */
 
 #contact-form {
-    width: 60%;
+    width: 40%;
     margin: auto;
     padding: 20px;
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
     background-color: #fff;
-    display: flex; /* Use flexbox to align labels and inputs side by side */
-    flex-direction: column; /* Arrange items in a column */
+    display: flex;
+    flex-direction: column;
 }
 
 #contact-form label {

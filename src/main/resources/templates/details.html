@@ -12,20 +12,20 @@
         <!-- TODO: Figure out why this line is returning a 400 status code -->
         <!-- <input type="hidden" id="id" name="id" th:value="${contact.id}" required><br> -->
 
-        <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" th:value="${contact?.firstName}" required><br>
+        <!-- <label for="firstName">First Name:</label> -->
+        <input type="text" id="firstName" name="firstName" th:value="${contact?.firstName}" placeholder="First Name">
 
-        <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName" th:value="${contact?.lastName}" required><br>
+        <!-- <label for="lastName">Last Name:</label> -->
+        <input type="text" id="lastName" name="lastName" th:value="${contact?.lastName}" placeholder="Last Name" required>
 
-        <label for="address">Address:</label>
-        <input type="text" id="address" name="address" th:value="${contact?.address}" required><br>
+        <!-- <label for="address">Address:</label> -->
+        <input type="text" id="address" name="address" th:value="${contact?.address}" placeholder="Address" required>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" th:value="${contact?.email}" required><br>
+        <!-- <label for="email">Email:</label> -->
+        <input type="email" id="email" name="email" th:value="${contact?.email}" placeholder="Email" required>
 
-        <label for="contactNumber">Contact Number:</label>
-        <input type="tel" id="contactNumber" name="contactNumber" th:value="${contact?.contactNumber}" required><br>
+        <!-- <label for="contactNumber">Contact Number:</label> -->
+        <input type="tel" id="contactNumber" name="contactNumber" th:value="${contact?.contactNumber}" placeholder="Contact Number" required>
 
         <input type="submit" class="btn btn-success ml-2" value="Dynamic Button">
     </form>
