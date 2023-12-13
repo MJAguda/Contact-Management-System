@@ -2,12 +2,38 @@ package com.mjdminer.springboot.cms.model;
 
 import java.util.Arrays;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
+@Entity // This tells Hibernate to make a table out of this class
 public class Contact {
+
+    @Id // This makes id the primary key
+    @GeneratedValue // This makes id auto-increment
     private int id;
+
+    @NotBlank(message = "First name must not be blank")
     private String firstName;
+
+    @NotBlank(message = "Last name must not be blank")
     private String lastName;
+
+    @NotBlank(message = "Address must not be blank")
     private String address;
+
+    @NotBlank(message = "Email must not be blank")
+    @Email(message = "Email must be valid")
     private String email;
+
+    @Pattern(regexp = "\\+63", message = "Contact number must start with +63")
+    @Size(min = 13, max = 13, message = "Contact number must have 13 numbers")
     private String contactNumber;
 
     // Empty Contact Constructors

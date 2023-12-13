@@ -7,7 +7,7 @@ header {
     left: 0;
     width: 100%;
     z-index: 999;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add shadow */
 }
 .search-bar {
     margin: auto;
@@ -103,10 +103,11 @@ main {
     width: 40%;
     margin: auto;
     padding: 20px;
-    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
     background-color: #fff;
     display: flex;
     flex-direction: column;
+    align-items: center; /* Center items vertically */
 }
 
 #contact-form label {
@@ -116,7 +117,8 @@ main {
 }
 
 #contact-form input {
-    width: calc(100% - 22px);
+    width: auto;
+    /* width: calc(100% - 22px); */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -125,7 +127,7 @@ main {
 }
 
 #contact-form .btn {
-    width: 100%;
+    width: auto;
     max-width: 200px;
     background-color: #007bff;
     border: none;
@@ -163,6 +165,6 @@ footer {
     left: 0;
     width: 100%;
     color: #fff;
-    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
 }
 

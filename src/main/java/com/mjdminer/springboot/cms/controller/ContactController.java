@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mjdminer.springboot.cms.model.Contact;
 import com.mjdminer.springboot.cms.service.ContactService;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class ContactController {
@@ -40,16 +43,23 @@ public class ContactController {
         // return to contact.html
         return "details";
     }
-
+    
     // PostMapping for localhost:8080/add-contact
     @PostMapping("/add-contact")
-    public String addNewContactPage(@ModelAttribute("contact") Contact contact) {
+    public String addNewContactPage(@ModelAttribute("contact") @Valid Contact contact, BindingResult result, ModelMap model) {
+
+        if(result.hasErrors()) {
+            model.addAttribute("errors", result.getAllErrors());
+            return "details";
+        }
 
         contactService.addContact(contact.getFirstName(),
                 contact.getLastName(),
                 contact.getAddress(),
                 contact.getEmail(),
                 contact.getContactNumber());
+        
+        model.addAttribute("successMessage", "Contact successfully added!");
         return "redirect:/";
     }
 
