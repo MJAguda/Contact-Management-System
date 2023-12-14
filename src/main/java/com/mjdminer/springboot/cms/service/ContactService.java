@@ -5,12 +5,24 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mjdminer.springboot.cms.model.Contact;
+import com.mjdminer.springboot.cms.respository.ContactRepository;
 
 @Service
 public class ContactService {
+
+    @Autowired
+    private ContactRepository contactRepository;
+
+    // The pupose of this Constructor is to inject the ContactRepository dependency
+    public ContactService(ContactRepository contactRepository) {
+        super();
+        this.contactRepository = contactRepository;
+    }
+
     // ArrayList to store contacts
     private static List<Contact> contacts = new ArrayList<Contact>();
 
@@ -30,13 +42,20 @@ public class ContactService {
 
     // Method to getAllContacts
     public List<Contact> getAllContacts() {
-        return contacts;
+        return contactRepository.findAll();
     }
 
     // Method to addContact
     public void addContact(String firstName, String lastName, String address, String email, String contactNumber) {
-        Contact contact = new Contact(++count, firstName, lastName, address, email, contactNumber);
-        contacts.add(contact);
+        Contact contact = new Contact();
+        contact.setFirstName(firstName);
+        contact.setLastName(lastName);
+        contact.setAddress(address);
+        contact.setEmail(email);
+        contact.setContactNumber(contactNumber);
+
+        // contacts.add(contact);
+        contactRepository.save(contact);
     }
 
     // Method to deleteContactById
