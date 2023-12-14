@@ -16,16 +16,17 @@ import com.mjdminer.springboot.cms.service.ContactService;
 
 import jakarta.validation.Valid;
 
-//@Controller
-public class ContactController {
+@Controller
+public class ContactControllerJpa {
 
     @Autowired
     private ContactService contactService;
 
-    public ContactController(ContactService contactService) {
+    // The pupose of thie Constructor is to inject the ContactService dependency
+    public ContactControllerJpa(ContactService contactService) {
         super();
         this.contactService = contactService;
-    }
+    } 
     
     // GetMapping for localhost:8080/
     @GetMapping("/")
@@ -75,7 +76,7 @@ public class ContactController {
     @GetMapping("/update-contact")
     public String showUpdateContactPage(@RequestParam int id, ModelMap model) {
         Contact contact = contactService.findById(id);
-
+        
         model.addAttribute("contact", contact);
 
         // return to contact.html
@@ -83,7 +84,13 @@ public class ContactController {
     }
 
     @PostMapping("/update-contact")
-    public String updateContact(@ModelAttribute("contact") Contact contact) {
+    public String updateContact(@ModelAttribute("contact") @Valid Contact contact, BindingResult result, ModelMap model) {
+
+        if(result.hasErrors()) {
+            model.addAttribute("errors", result.getAllErrors());
+            return "details";
+        }
+
         contactService.updateContact(contact);
         return "redirect:/";
     }
