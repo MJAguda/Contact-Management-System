@@ -81,12 +81,19 @@ public class ContactService {
 
     // Method to filterContacts
     public List<Contact> filterContacts(String query) {
-        return contacts.stream()
+        return contactRepository.findAll().stream()
                 .filter(contact -> contact.getFirstName().toLowerCase().contains(query.toLowerCase())
                                 || contact.getLastName().toLowerCase().contains(query.toLowerCase())
                                 || contact.getAddress().toLowerCase().contains(query.toLowerCase())
                                 || contact.getEmail().toLowerCase().contains(query.toLowerCase())
                                 || contact.getContactNumber().toLowerCase().contains(query.toLowerCase()))
                 .collect(Collectors.toList());
+        // return contacts.stream()
+        //         .filter(contact -> contact.getFirstName().toLowerCase().contains(query.toLowerCase())
+        //                         || contact.getLastName().toLowerCase().contains(query.toLowerCase())
+        //                         || contact.getAddress().toLowerCase().contains(query.toLowerCase())
+        //                         || contact.getEmail().toLowerCase().contains(query.toLowerCase())
+        //                         || contact.getContactNumber().toLowerCase().contains(query.toLowerCase()))
+        //         .collect(Collectors.toList());
     }
 }

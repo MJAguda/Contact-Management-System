@@ -1,5 +1,6 @@
 package com.mjdminer.springboot.cms.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,6 +117,10 @@ public class ContactControllerJpa {
         if(query != null && !query.isEmpty()) {
             contacts = contactService.filterContacts(query);
         } else {
+            // // else if query is null or empty return nothing
+            // contacts = new ArrayList<>();
+
+            // else if query is null or empty return all contacts
             contacts = contactService.getAllContacts();
         }
 
