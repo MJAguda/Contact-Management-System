@@ -4,11 +4,10 @@ import java.util.Arrays;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
@@ -16,7 +15,7 @@ import jakarta.validation.constraints.Size;
 public class Contact {
 
     @Id // This makes id the primary key
-    @GeneratedValue // This makes id auto-increment
+    @GeneratedValue (strategy = GenerationType.IDENTITY) // This makes id auto-increment
     private int id;
 
     @NotBlank(message = "First name must not be blank")
@@ -32,8 +31,7 @@ public class Contact {
     @Email(message = "Email must be valid")
     private String email;
 
-    @Pattern(regexp = "\\+63", message = "Contact number must start with +63")
-    @Size(min = 13, max = 13, message = "Contact number must have 13 numbers")
+    @Pattern(regexp = "\\+63\\d{10}", message = "Contact number must start with +63 and have 13 numbers")
     private String contactNumber;
 
     // Empty Contact Constructors
