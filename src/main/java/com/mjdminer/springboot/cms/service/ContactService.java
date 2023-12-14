@@ -60,21 +60,23 @@ public class ContactService {
 
     // Method to deleteContactById
     public void deleteContactById(int id) {
-        Predicate<? super Contact> predicate = contact -> contact.getId() == id;
-        contacts.removeIf(predicate);
+        // Predicate<? super Contact> predicate = contact -> contact.getId() == id;
+        // contacts.removeIf(predicate);
+        contactRepository.deleteById(id);
     }
 
     // Method to findById
     public Contact findById(int id) {
-        Predicate<? super Contact> predicate = contact -> contact.getId() == id;
-        Contact contact = contacts.stream().filter(predicate).findFirst().get();
+        // Predicate<? super Contact> predicate = contact -> contact.getId() == id;
+        // Contact contact = contacts.stream().filter(predicate).findFirst().get();
+        Contact contact = contactRepository.findById(id).get();
         return contact;
     }
 
     // Method to updateContact
     public void updateContact(Contact contact) {
         deleteContactById(contact.getId());
-        contacts.add(contact);
+        contactRepository.save(contact);
     }
 
     // Method to filterContacts
