@@ -1,6 +1,5 @@
 package com.mjdminer.springboot.cms.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +26,8 @@ public class ContactControllerJpa {
     public ContactControllerJpa(ContactService contactService) {
         super();
         this.contactService = contactService;
-    } 
-    
+    }
+
     // GetMapping for localhost:8080/
     @GetMapping("/")
     public String listAllContacts(ModelMap model) {
@@ -46,12 +45,13 @@ public class ContactControllerJpa {
         // return to contact.html
         return "details";
     }
-    
+
     // PostMapping for localhost:8080/add-contact
     @PostMapping("/add-contact")
-    public String addNewContactPage(@ModelAttribute("contact") @Valid Contact contact, BindingResult result, ModelMap model) {
+    public String addNewContactPage(@ModelAttribute("contact") @Valid Contact contact, BindingResult result,
+            ModelMap model) {
 
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             model.addAttribute("errors", result.getAllErrors());
             return "details";
         }
@@ -61,7 +61,7 @@ public class ContactControllerJpa {
                 contact.getAddress(),
                 contact.getEmail(),
                 contact.getContactNumber());
-        
+
         model.addAttribute("successMessage", "Contact successfully added!");
         return "redirect:/";
     }
@@ -77,7 +77,7 @@ public class ContactControllerJpa {
     @GetMapping("/update-contact")
     public String showUpdateContactPage(@RequestParam int id, ModelMap model) {
         Contact contact = contactService.findById(id);
-        
+
         model.addAttribute("contact", contact);
 
         // return to contact.html
@@ -85,9 +85,10 @@ public class ContactControllerJpa {
     }
 
     @PostMapping("/update-contact")
-    public String updateContact(@ModelAttribute("contact") @Valid Contact contact, BindingResult result, ModelMap model) {
+    public String updateContact(@ModelAttribute("contact") @Valid Contact contact, BindingResult result,
+            ModelMap model) {
 
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             model.addAttribute("errors", result.getAllErrors());
             return "details";
         }
@@ -114,7 +115,7 @@ public class ContactControllerJpa {
     public String searchContact(ModelMap model, @RequestParam(required = false) String query) {
         List<Contact> contacts;
 
-        if(query != null && !query.isEmpty()) {
+        if (query != null && !query.isEmpty()) {
             contacts = contactService.filterContacts(query);
         } else {
             // // else if query is null or empty return nothing
