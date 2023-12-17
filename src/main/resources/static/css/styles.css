@@ -171,7 +171,7 @@ main {
 
 /* End Field Animation */
 
-/* Improved responsiveness for smaller screens */
+/* Improved responsiveness for smaller screenss */
 @media (max-width: 600px) {
     #contact-form {
         width: 80%;
