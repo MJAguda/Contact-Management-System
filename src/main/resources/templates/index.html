@@ -12,7 +12,6 @@
         <table class="table mt-4">
             <thead>
                 <tr>
-                    <!-- TODO: Figure out the Styling conflict  -->
                     <th th:class="${sortField eq 'firstName'} ? 'active' : ''">
                         <a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
                             Name
