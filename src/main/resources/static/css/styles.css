@@ -14,7 +14,7 @@ header {
     margin-top: 10px;
 }
 
-.serach-form {
+.search-form {
     display: flex;
     align-items: center;
 }
@@ -192,6 +192,35 @@ main {
 .table tbody td {
     text-align: center;
 }
+
+/* CSS for Pagination and Sorting*/
+.row.col-sm-10 {
+    display: flex;
+    justify-content: flex-end; /* Aligns the pagination to the right */
+    margin-top: 20px;
+}
+
+.row.col-sm-10 .col-sm-2 {
+    margin-right: 20px;
+}
+
+.row.col-sm-10 .col-sm-1 {
+    margin: 0 10px;
+}
+
+.row.col-sm-10 .col-sm-1 a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.row.col-sm-10 .col-sm-1 a:hover {
+    color: #0056b3;
+}
+
+.row.col-sm-10 .col-sm-1 span {
+    color: #6c757d;
+}
+/* End of Pagination and Sorting */
 
 /* Start Footer */
 footer {

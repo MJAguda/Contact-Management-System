@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.mjdminer.springboot.cms.model.Contact;
@@ -82,17 +86,26 @@ public class ContactService {
     public List<Contact> filterContacts(String query) {
         return contactRepository.findAll().stream()
                 .filter(contact -> contact.getFirstName().toLowerCase().contains(query.toLowerCase())
-                                || contact.getLastName().toLowerCase().contains(query.toLowerCase())
-                                || contact.getAddress().toLowerCase().contains(query.toLowerCase())
-                                || contact.getEmail().toLowerCase().contains(query.toLowerCase())
-                                || contact.getContactNumber().toLowerCase().contains(query.toLowerCase()))
+                        || contact.getLastName().toLowerCase().contains(query.toLowerCase())
+                        || contact.getAddress().toLowerCase().contains(query.toLowerCase())
+                        || contact.getEmail().toLowerCase().contains(query.toLowerCase())
+                        || contact.getContactNumber().toLowerCase().contains(query.toLowerCase()))
                 .collect(Collectors.toList());
         // return contacts.stream()
-        //         .filter(contact -> contact.getFirstName().toLowerCase().contains(query.toLowerCase())
-        //                         || contact.getLastName().toLowerCase().contains(query.toLowerCase())
-        //                         || contact.getAddress().toLowerCase().contains(query.toLowerCase())
-        //                         || contact.getEmail().toLowerCase().contains(query.toLowerCase())
-        //                         || contact.getContactNumber().toLowerCase().contains(query.toLowerCase()))
-        //         .collect(Collectors.toList());
+        // .filter(contact ->
+        // contact.getFirstName().toLowerCase().contains(query.toLowerCase())
+        // || contact.getLastName().toLowerCase().contains(query.toLowerCase())
+        // || contact.getAddress().toLowerCase().contains(query.toLowerCase())
+        // || contact.getEmail().toLowerCase().contains(query.toLowerCase())
+        // || contact.getContactNumber().toLowerCase().contains(query.toLowerCase()))
+        // .collect(Collectors.toList());
+    }
+
+    // Method to findPaginated
+    public Page<Contact> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
+
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+        return this.contactRepository.findAll(pageable);
     }
 }

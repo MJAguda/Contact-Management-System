@@ -3,11 +3,13 @@ package com.mjdminer.springboot.cms.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -29,14 +31,19 @@ public class ContactControllerJpa {
     }
 
     // GetMapping for localhost:8080/
+    // @GetMapping("/")
+    // public String listAllContacts(ModelMap model) {
+
+    // List<Contact> contacts = contactService.getAllContacts();
+
+    // model.addAttribute("contacts", contacts);
+    // // return to index.html
+    // return "index";
+    // }
+
     @GetMapping("/")
     public String listAllContacts(ModelMap model) {
-
-        List<Contact> contacts = contactService.getAllContacts();
-
-        model.addAttribute("contacts", contacts);
-        // return to index.html
-        return "index";
+        return findPaginated(1, "firstName", "asc", model);
     }
 
     // GetMapping for localhost:8080/add-contact
@@ -130,4 +137,27 @@ public class ContactControllerJpa {
 
         return "index";
     }
+
+    @GetMapping("/page/{pageNo}")
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
+            @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir, ModelMap model) {
+
+        int pageSize = 5;
+
+        Page<Contact> contacts = contactService.findPaginated(pageNo, pageSize, sortField, sortDir);
+        List<Contact> allContacts = contactService.getAllContacts();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", allContacts.size() / pageSize);
+        // model.addAttribute("totalPages", (int) Math.ceil((double) allContacts.size()
+        // / pageSize)); // Adjust totalPages calculation
+        model.addAttribute("totalItems", allContacts.size());
+        model.addAttribute("contacts", contacts);
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+
+        return "index";
+    }
+
 }

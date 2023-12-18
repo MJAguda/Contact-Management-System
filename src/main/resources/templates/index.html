@@ -12,9 +12,22 @@
         <table class="table mt-4">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
+                    <!-- TODO: Figure out the Styling conflict  -->
+                    <th th:class="${sortField eq 'firstName'} ? 'active' : ''">
+                        <a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
+                            Name
+                        </a>
+                    </th>
+                    <th th:class="${sortField eq 'email'} ? 'active' : ''">
+                        <a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
+                            Email
+                        </a>
+                    </th>
+                    <th th:class="${sortField eq 'firstName'} ? 'active' : ''">
+                        <a th:href="@{'/page/' + ${currentPage} + '?sortField=contactNumber&sortDir=' + ${reverseSortDir}}">
+                            Contact Number
+                        </a>
+                    </th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -36,6 +49,32 @@
                 <!-- END: Dynamic Table Rows -->
             </tbody>
         </table>
+
+        <!-- BEGIN: Pagination -->
+        <div th:if = "${totalPages > 1}">
+			<div class = "row col-sm-10">
+				<div class = "col-sm-2">
+					Total Rows: [[${totalItems}]] 
+				</div>
+				<div class = "col-sm-1">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+					</span>
+				</div>
+				<div class = "col-sm-1">
+					<a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+					<span th:unless="${currentPage < totalPages}">Next</span>
+				</div>
+				
+				 <div class="col-sm-1">
+    				<a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+					<span th:unless="${currentPage < totalPages}">Last</span>
+   				 </div>
+			</div>
+		</div>
+        <!-- END: Pagination -->
+
     </div>
 
 </main>
