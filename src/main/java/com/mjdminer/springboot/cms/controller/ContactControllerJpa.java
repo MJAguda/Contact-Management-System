@@ -142,15 +142,14 @@ public class ContactControllerJpa {
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
             @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir, ModelMap model) {
 
-        int pageSize = 5;
+        int pageSize = 4;
 
         Page<Contact> contacts = contactService.findPaginated(pageNo, pageSize, sortField, sortDir);
         List<Contact> allContacts = contactService.getAllContacts();
 
         model.addAttribute("currentPage", pageNo);
-        model.addAttribute("totalPages", allContacts.size() / pageSize);
-        // model.addAttribute("totalPages", (int) Math.ceil((double) allContacts.size()
-        // / pageSize)); // Adjust totalPages calculation
+        // model.addAttribute("totalPages", allContacts.size() / pageSize);
+        model.addAttribute("totalPages", (int) Math.ceil((double) allContacts.size() / pageSize)); // Adjust totalPages calculation
         model.addAttribute("totalItems", allContacts.size());
         model.addAttribute("contacts", contacts);
         model.addAttribute("sortField", sortField);
