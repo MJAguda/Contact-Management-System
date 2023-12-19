@@ -1,0 +1,7 @@
+com\mjdminer\springboot\cms\model\Contact.class
+com\mjdminer\springboot\cms\service\ContactService.class
+com\mjdminer\springboot\cms\respository\ContactRepository.class
+com\mjdminer\springboot\cms\controller\ContactController.class
+com\mjdminer\springboot\cms\controller\ContactControllerJpa.class
+com\mjdminer\springboot\cms\CmsApplication.class
+com\mjdminer\springboot\cms\hello\GreetingController.class
