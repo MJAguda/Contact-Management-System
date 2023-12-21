@@ -1,5 +1,5 @@
 # Define base docker image
-FROM openjdk:21.04-jdk-slim
+FROM openjdk:21
 LABEL maintainer="maguda@fullscale.io"
 ADD target/cms-0.0.1-SNAPSHOT.jar cms.jar
 ENTRYPOINT ["java", "-jar", "/cms.jar"]
