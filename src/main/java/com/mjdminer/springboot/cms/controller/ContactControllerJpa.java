@@ -31,19 +31,15 @@ public class ContactControllerJpa {
     }
 
     // GetMapping for localhost:8080/
-    // @GetMapping("/")
-    // public String listAllContacts(ModelMap model) {
-
-    // List<Contact> contacts = contactService.getAllContacts();
-
-    // model.addAttribute("contacts", contacts);
-    // // return to index.html
-    // return "index";
-    // }
-
     @GetMapping("/")
     public String listAllContacts(ModelMap model) {
-        return findPaginated(1, "firstName", "asc", model);
+
+        List<Contact> contacts = contactService.getAllContacts();
+
+        model.addAttribute("contacts", contacts);
+        // return to index.html
+        return "index";
+        // return findPaginated(1, "firstName", "asc", model);
     }
 
     // GetMapping for localhost:8080/add-contact
@@ -149,7 +145,8 @@ public class ContactControllerJpa {
 
         model.addAttribute("currentPage", pageNo);
         // model.addAttribute("totalPages", allContacts.size() / pageSize);
-        model.addAttribute("totalPages", (int) Math.ceil((double) allContacts.size() / pageSize)); // Adjust totalPages calculation
+        model.addAttribute("totalPages", (int) Math.ceil((double) allContacts.size() / pageSize)); // Adjust totalPages
+                                                                                                   // calculation
         model.addAttribute("totalItems", allContacts.size());
         model.addAttribute("contacts", contacts);
         model.addAttribute("sortField", sortField);
