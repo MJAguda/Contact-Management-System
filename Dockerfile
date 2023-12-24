@@ -1,6 +1,9 @@
 # Define base docker image
 FROM openjdk:21
 LABEL maintainer="maguda@fullscale.io"
+
+RUN ./mvnw clean install -DskipTests
+
 ADD target/cms-0.0.1-SNAPSHOT.jar cms.jar
 ENTRYPOINT ["java", "-jar", "/cms.jar"]
 
