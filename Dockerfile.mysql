@@ -1,0 +1,13 @@
+# Use the official MySQL image
+FROM mysql:latest
+
+# Set the root password
+ENV MYSQL_ROOT_PASSWORD=root-password
+
+# Create a database and user
+ENV MYSQL_DATABASE=contacts
+ENV MYSQL_USER=user
+ENV MYSQL_PASSWORD=password
+
+# Copy your SQL script to initialize the database
+COPY init.sql /docker-entrypoint-initdb.d/
