@@ -1,9 +1,17 @@
-# Build docker image
-docker build -t cms:latest .
+<!-- Pull MySQL Image -->
+docker pull mysql
 
-# Run MySQL image
-docker run --detach --env MYSQL_ROOT_PASSWORD=root-password --env MYSQL_USER=user --env MYSQL_PASSWORD=password --env MYSQL_DATABASE=contacts --name mysql --publish 3306:3306 mysql:8-oracle
+<!-- Run Docker Container -->
+docker run -p 3307:3306 --name mysqlcontainer -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=contacts -d mysql
 
-# Run docker image
-docker run --name cms -p 8081:8080 cms:latest
+<!-- Create network -->
+docker network create networkmysql
 
+<!-- Connect network -->
+docker network connect networkmysql mysqlcontainer
+
+<!-- Build Spring Boot Application Image -->
+docker build -t cmsimage .
+
+<!-- Run Spring Boot Application Container -->
+docker run -p 8090:8080 --name cmscontainer --net networkmysql -e MYSQL_HOST=mysqlcontainer -e MYSQL_PORT:3306 -e MYSQL_DB_NAME=contacts -e MYSQL_USER=root -e MYSQL_PASSWORD:root cmsimage
