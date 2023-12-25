@@ -34,12 +34,12 @@ public class ContactControllerJpa {
     @GetMapping("/")
     public String listAllContacts(ModelMap model) {
 
-        List<Contact> contacts = contactService.getAllContacts();
+        // List<Contact> contacts = contactService.getAllContacts();
 
-        model.addAttribute("contacts", contacts);
-        // return to index.html
-        return "index";
-        // return findPaginated(1, "firstName", "asc", model);
+        // model.addAttribute("contacts", contacts);
+        // // return to index.html
+        // return "index";
+        return findPaginated(1, "firstName", "asc", model);
     }
 
     // GetMapping for localhost:8080/add-contact
