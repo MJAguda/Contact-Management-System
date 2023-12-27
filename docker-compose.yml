@@ -1,0 +1,30 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: contacts
+    ports:
+      - "3307:3306"
+    networks:
+      - networkmysql
+
+  cms:
+    build: .
+    image: cmsimage
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DB_NAME: contacts
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    ports:
+      - "8090:8080"
+    depends_on:
+      - mysql
+    networks:
+      - networkmysql
+
+networks:
+  networkmysql:
