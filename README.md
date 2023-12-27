@@ -11,7 +11,7 @@ docker network create networkmysql
 docker network connect networkmysql mysqlcontainer
 
 <!-- Build Spring Boot Application Image -->
-docker build -t cmsimage .
+docker build -t cmsimage -f spring.Dockerfile .
 
 <!-- Run Spring Boot Application Container -->
 docker run -p 8090:8080 --name cmscontainer --net networkmysql -e MYSQL_HOST=mysqlcontainer -e MYSQL_PORT:3306 -e MYSQL_DB_NAME=contacts -e MYSQL_USER=root -e MYSQL_PASSWORD:root cmsimage

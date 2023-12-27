@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   mysql:
-    image: mysql
+    image: mysqlimage
     container_name: mysqlcontainer
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -11,11 +11,12 @@ services:
     networks:
       - networkmysql
 
-  spring-app:
+  spring:
     build:
       context: .
       dockerfile: spring.Dockerfile
-    container_name: cmscontainer
+    image: springimage
+    container_name: springcontainer
     depends_on:
       - mysql
     ports:
@@ -23,7 +24,7 @@ services:
     networks:
       - networkmysql
     environment:
-      MYSQL_HOST: mysqlcontainer
+      MYSQL_HOST: mysql
       MYSQL_PORT: 3306
       MYSQL_DB_NAME: contacts
       MYSQL_USER: root
