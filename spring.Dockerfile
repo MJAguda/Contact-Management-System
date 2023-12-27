@@ -10,6 +10,4 @@ LABEL maintainer="Mark Jayson Molina Aguda"
 WORKDIR /cms
 COPY . .
 RUN mvn clean install
-ADD target/*.jar cms.jar
-ENTRYPOINT [ "java", "-jar", "cms.jar" ]
-# CMD mvn spring-boot:run
+CMD mvn spring-boot:run
