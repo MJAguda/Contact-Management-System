@@ -15,3 +15,8 @@ docker build -t cmsimage .
 
 <!-- Run Spring Boot Application Container -->
 docker run -p 8090:8080 --name cmscontainer --net networkmysql -e MYSQL_HOST=mysqlcontainer -e MYSQL_PORT:3306 -e MYSQL_DB_NAME=contacts -e MYSQL_USER=root -e MYSQL_PASSWORD:root cmsimage
+
+<!-- OR USE docker-compose build -->
+docker-compose build
+docker-compose up
+docker-compose down
