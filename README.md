@@ -18,5 +18,7 @@ docker run -p 8090:8080 --name cmscontainer --net networkmysql -e MYSQL_HOST=mys
 
 <!-- OR USE docker-compose build -->
 docker-compose build
+
 docker-compose up
+
 docker-compose down

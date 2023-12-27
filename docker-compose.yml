@@ -1,35 +1,38 @@
 version: '3.8'
 services:
   mysql:
-    image: mysqlimage
+    image: mysql
     container_name: mysqlcontainer
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: contacts
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DB_NAME}
     ports:
-      - "3307:3306"
+      - "${MYSQL_HOST_PORT}:3306"
+    restart: unless-stopped
     networks:
       - networkmysql
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
-  spring:
+  cms:
     build:
       context: .
       dockerfile: spring.Dockerfile
-    image: springimage
-    container_name: springcontainer
-    depends_on:
-      - mysql
+    image: cmsimage
+    container_name: cmscontainer
+    environment:
+      MYSQL_HOST: mysqlcontainer
+      MYSQL_PORT: 3306
+      MYSQL_DB_NAME: ${MYSQL_DB_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
-      - "8090:8080"
+      - "${CMS_HOST_PORT}:8080"
     networks:
       - networkmysql
-    environment:
-      MYSQL_HOST: mysql
-      MYSQL_PORT: 3306
-      MYSQL_DB_NAME: contacts
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+    depends_on:
+      - mysql
+    restart: unless-stopped
 
 networks:
   networkmysql:
-    driver: bridge
