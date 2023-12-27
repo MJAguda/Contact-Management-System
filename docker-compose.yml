@@ -1,7 +1,8 @@
 version: '3'
 services:
   mysql:
-    image: mysql:latest
+    container_name: mysqlcontainer
+    image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: contacts
@@ -11,8 +12,11 @@ services:
       - networkmysql
 
   cms:
-    build: .
+    container_name: cmscontainer
     image: cmsimage
+    build:
+      context: .
+      dockerfile: spring.Dockerfile
     environment:
       MYSQL_HOST: mysql
       MYSQL_PORT: 3306
@@ -28,3 +32,4 @@ services:
 
 networks:
   networkmysql:
+    driver: bridge
