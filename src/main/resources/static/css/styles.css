@@ -39,7 +39,7 @@
 /* Header */
 #header {
     grid-area: header;
-    background-color: #007bff;
+    background-color: #001e1d;
     position: relative;
     width: auto;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
@@ -129,14 +129,29 @@
 
 #navbar {
     grid-area: navbar;
-    background-color: #619eee;
+    background-color: #001e1d;
     padding: 10px;
+}
+
+#navbar h6 {
+    color: #abd1c6;
+    font-weight: bold;
+}
+
+#navbar a {
+    text-decoration: none;
+    color: #f9bc60;
+    padding: 10px;
+}
+
+#navbar a:hover {
+    color: #e16162;
 }
 
 /* Start Main */
 #main {
     grid-area: main;
-    background-color: #f1f1f1;
+    background-color: #004643;
     text-align: center;
     padding: 10px;
 }
@@ -147,6 +162,7 @@
 #pagetitle {
     margin-bottom: 20px;
     text-align: center;
+    color: #fffffe;
 }
 
 /* Start */
@@ -236,46 +252,49 @@ input:valid~label {
 
 .table thead th {
     text-align: center;
+    color: #f9bc60;
+}
+
+.table thead th a {
+    text-align: center;
+    color: #f9bc60;
+}
+
+.table thead th a:hover {
+    color: #e16162;
+    text-decoration: none;
 }
 
 .table tbody td {
     text-align: center;
+    color: #abd1c6;
+    
 }
 
 /* CSS for Pagination and Sorting*/
-.row.col-sm-10 {
+.pagination {
     display: flex;
-    justify-content: flex-end;
-    /* Aligns the pagination to the right */
+    justify-content: center;
+    /* Aligns the pagination to the center */
     margin-top: 20px;
+    color: #fff;
 }
 
-.row.col-sm-10 .col-sm-2 {
-    margin-right: 20px;
+.pagination a {
+    color : #f9bc60;
 }
 
-.row.col-sm-10 .col-sm-1 {
-    margin: 0 10px;
-}
-
-.row.col-sm-10 .col-sm-1 a {
-    color: #007bff;
+.pagination a:hover{
+    color : #e16162;
     text-decoration: none;
 }
 
-.row.col-sm-10 .col-sm-1 a:hover {
-    color: #0056b3;
-}
-
-.row.col-sm-10 .col-sm-1 span {
-    color: #6c757d;
-}
 /* End of Pagination and Sorting */
 
 /* Start Footer */
 #footer {
     grid-area: footer;
-    background-color: #007bff;
+    background-color: #001e1d;
     position: relative;
     bottom: 0;
     left: 0;

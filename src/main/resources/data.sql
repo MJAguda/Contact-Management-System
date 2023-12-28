@@ -8,4 +8,10 @@ VALUES (10001, 'Juan', 'Dela Cruz', '123 Main St', 'juan.delacruz@example.com', 
        (10007, 'Pedro', 'Lopez', '654 Maple St', 'pedro.lopez@example.com', '+639222222222'),
        (10008, 'Emily', 'Santos', '789 Oak St', 'emily.santos@example.com', '+639333333333'),
        (10009, 'Daniel', 'Gonzales', '456 Elm St', 'daniel.gonzales@example.com', '+639444444444'),
-       (10010, 'Olivia', 'Garcia', '321 Pine St', 'olivia.garcia@example.com', '+639666666666');
+       (10010, 'Olivia', 'Garcia', '321 Pine St', 'olivia.garcia@example.com', '+639666666666'),
+       (10011, 'Olivia', 'Garcia', '321 Pine St', 'olivia.garcia@example.com', '+639666666666'),
+       (10012, 'Olivia', 'Garcia', '321 Pine St', 'olivia.garcia@example.com', '+639666666666'),
+       (10013, 'Olivia', 'Garcia', '321 Pine St', 'olivia.garcia@example.com', '+639666666666'),
+       (10014, 'Olivia', 'Garcia', '321 Pine St', 'olivia.garcia@example.com', '+639666666666'),
+       (10015, 'Olive', 'Garcia', '321 Pine St', 'olivia.garcia@example.com', '+639666666666'),
+       (10016, 'Olivia', 'Garcio', '321 Pine St', 'olivia.garcia@example.com', '+639666666666');

@@ -103,9 +103,26 @@ public class ContactService {
 
     // Method to findPaginated
     public Page<Contact> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
-        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending()
+                : Sort.by(sortField).descending();
 
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
         return this.contactRepository.findAll(pageable);
+    }
+
+    // Add this method to the ContactService.java
+    public Page<Contact> findPaginated(int pageNo, String query, int pageSize, String sortField, String sortDirection) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending()
+                : Sort.by(sortField).descending();
+
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+
+        if (query != null && !query.isEmpty()) {
+            return contactRepository
+                    .findAllByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCaseOrAddressContainingIgnoreCaseOrEmailContainingIgnoreCaseOrContactNumberContainingIgnoreCase(
+                            query, query, query, query, query, pageable);
+        } else {
+            return contactRepository.findAll(pageable);
+        }
     }
 }
