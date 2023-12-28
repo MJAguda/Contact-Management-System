@@ -39,7 +39,7 @@ public class ContactControllerJpa {
         // model.addAttribute("contacts", contacts);
         // // return to index.html
         // return "index";
-        return findPaginated(1, "firstName", "asc", model);
+        return findPaginated(1, "", "firstName", "asc", model);
     }
 
     // GetMapping for localhost:8080/add-contact
@@ -115,20 +115,23 @@ public class ContactControllerJpa {
     }
 
     @GetMapping("/search-contact")
-    public String searchContact(ModelMap model, @RequestParam(required = false) String query) {
-        List<Contact> contacts;
+    public String searchContact(ModelMap model, @RequestParam(required = false) String query,
+            @RequestParam(defaultValue = "1") int pageNo,
+            @RequestParam(defaultValue = "firstName") String sortField,
+            @RequestParam(defaultValue = "asc") String sortDir) {
 
-        if (query != null && !query.isEmpty()) {
-            contacts = contactService.filterContacts(query);
-        } else {
-            // // else if query is null or empty return nothing
-            // contacts = new ArrayList<>();
+        int pageSize = 4;
 
-            // else if query is null or empty return all contacts
-            contacts = contactService.getAllContacts();
-        }
+        Page<Contact> contacts = contactService.findPaginated(pageNo, query, pageSize, sortField, sortDir);
+        List<Contact> allContacts = contactService.filterContacts(query);
 
-        model.addAttribute("contacts", contacts);
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", (int) Math.ceil((double) allContacts.size() / pageSize));
+        model.addAttribute("totalItems", allContacts.size());
+        model.addAttribute("contacts", contacts.getContent());
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
         model.addAttribute("query", query);
 
         return "index";
@@ -136,14 +139,22 @@ public class ContactControllerJpa {
 
     @GetMapping("/page/{pageNo}")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
-            @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir, ModelMap model) {
+            @RequestParam(required = false) String query, @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir, ModelMap model) {
 
         int pageSize = 4;
 
-        Page<Contact> contacts = contactService.findPaginated(pageNo, pageSize, sortField, sortDir);
-        List<Contact> allContacts = contactService.getAllContacts();
-
+        Page<Contact> contacts = contactService.findPaginated(pageNo, query, pageSize, sortField, sortDir);
+        List<Contact> allContacts;
+        
+        if(query != null && !query.isEmpty()){
+            allContacts = contactService.filterContacts(query);
+        }
+        else{
+            allContacts = contactService.getAllContacts();
+        }
+        
         model.addAttribute("currentPage", pageNo);
+        model.addAttribute("query", query);
         // model.addAttribute("totalPages", allContacts.size() / pageSize);
         model.addAttribute("totalPages", (int) Math.ceil((double) allContacts.size() / pageSize)); // Adjust totalPages
                                                                                                    // calculation
