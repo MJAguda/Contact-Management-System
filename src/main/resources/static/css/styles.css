@@ -1,26 +1,26 @@
 @media (max-width: 768px) {
     body {
-      grid-template-columns: 1fr;
-      grid-template-rows: 10% 20% 20% 20% 20%;
-      grid-template-areas:
-        "header"
-        "navbar"
-        "main"
-        "section"
-        "content"
-        "footer";
+        grid-template-columns: 1fr;
+        grid-template-rows: 10% 20% 20% 20% 20%;
+        grid-template-areas:
+            "header"
+            "navbar"
+            "main"
+            "section"
+            "content"
+            "footer";
     }
-  
+
     #header,
     #navbar,
     #main,
     #section,
     #content,
     #footer {
-      text-align: center;
-      padding: 10px;
+        text-align: center;
+        padding: 10px;
     }
-  }
+}
 
 @media (min-width: 768px) {
     body {
@@ -131,6 +131,24 @@
     grid-area: navbar;
     background-color: #001e1d;
     padding: 10px;
+    max-height: 100vh;/* Adjust this value as needed */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0.1);
+}
+
+#navbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+#navbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+#navbar::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
 }
 
 #navbar h6 {
@@ -268,7 +286,7 @@ input:valid~label {
 .table tbody td {
     text-align: center;
     color: #abd1c6;
-    
+
 }
 
 /* CSS for Pagination and Sorting*/
@@ -281,11 +299,11 @@ input:valid~label {
 }
 
 .pagination a {
-    color : #f9bc60;
+    color: #f9bc60;
 }
 
-.pagination a:hover{
-    color : #e16162;
+.pagination a:hover {
+    color: #e16162;
     text-decoration: none;
 }
 
