@@ -3,6 +3,8 @@ package com.mjdminer.springboot.cms.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -30,6 +32,11 @@ public class ContactControllerJpa {
         this.contactService = contactService;
     }
 
+    private String getLoggedInUserName(ModelMap model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getName();
+    }
+
     // GetMapping for localhost:8080/
     @GetMapping("/")
     public String listAllContacts(ModelMap model) {
@@ -39,10 +46,16 @@ public class ContactControllerJpa {
         // model.addAttribute("contacts", contacts);
         // // return to index.html
         // return "index";
+
+        String username = getLoggedInUserName(model);
+        List<Contact> contacts = contactService.findByUsername(username);
+        model.addAttribute("contacts", contacts);
+
         return findPaginated(1, "", "firstName", "asc", model);
     }
 
     // GetMapping for localhost:8080/add-contact
+    // TODO: Include username
     @GetMapping("/add-contact")
     public String showNewContactPage(ModelMap model) {
         // return to contact.html
@@ -50,6 +63,7 @@ public class ContactControllerJpa {
     }
 
     // PostMapping for localhost:8080/add-contact
+    // TODO: Include username
     @PostMapping("/add-contact")
     public String addNewContactPage(@ModelAttribute("contact") @Valid Contact contact, BindingResult result,
             ModelMap model) {
@@ -87,6 +101,7 @@ public class ContactControllerJpa {
         return "details";
     }
 
+    // TODO: Include username
     @PostMapping("/update-contact")
     public String updateContact(@ModelAttribute("contact") @Valid Contact contact, BindingResult result,
             ModelMap model) {
@@ -139,20 +154,20 @@ public class ContactControllerJpa {
 
     @GetMapping("/page/{pageNo}")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
-            @RequestParam(required = false) String query, @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir, ModelMap model) {
+            @RequestParam(required = false) String query, @RequestParam("sortField") String sortField,
+            @RequestParam("sortDir") String sortDir, ModelMap model) {
 
         int pageSize = 4;
 
         Page<Contact> contacts = contactService.findPaginated(pageNo, query, pageSize, sortField, sortDir);
         List<Contact> allContacts;
-        
-        if(query != null && !query.isEmpty()){
+
+        if (query != null && !query.isEmpty()) {
             allContacts = contactService.filterContacts(query);
-        }
-        else{
+        } else {
             allContacts = contactService.getAllContacts();
         }
-        
+
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("query", query);
         // model.addAttribute("totalPages", allContacts.size() / pageSize);
@@ -166,5 +181,10 @@ public class ContactControllerJpa {
 
         return "index";
     }
+
+    // @GetMapping("/login")
+    // public String showLoginPage() {
+    //     return "login";
+    // }
 
 }

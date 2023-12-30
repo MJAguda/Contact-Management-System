@@ -17,6 +17,8 @@ public class Contact {
     @GeneratedValue (strategy = GenerationType.IDENTITY) // This makes id auto-increment
     private int id;
 
+    private String username;
+
     @NotBlank(message = "First name must not be blank")
     private String firstName;
 
@@ -38,9 +40,10 @@ public class Contact {
     }
 
     // Contact Constructor that will take all fields
-    public Contact(int id, String firstName, String lastName, String address, String email, String contactNumber) {
+    public Contact(int id, String username, String firstName, String lastName, String address, String email, String contactNumber) {
         // super();
         this.id = id;
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -63,6 +66,15 @@ public class Contact {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
 
     public String getFirstName() {
         return firstName;

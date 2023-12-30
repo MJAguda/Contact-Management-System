@@ -33,15 +33,15 @@ public class ContactService {
     private static int count = 0;
 
     // Hardcoded contacts
-    static {
-        // Add contacts to ArrayList
+    // static {
+    //     // Add contacts to ArrayList
 
-        contacts.add(new Contact(++count, "John", "Doe", "123 Main St", "john.doe@example.com", "123-456-7890"));
-        contacts.add(new Contact(++count, "Bob", "Smith", "789 Elm St", "bob.smith@example.com", "555-123-4567"));
-        contacts.add(new Contact(++count, "Mark Jayson", "Aguda", "125 Main St", "janedoe@gmail.com", "+639999999779"));
-        contacts.add(new Contact(++count, "Eva", "Miller", "567 Pine Rd", "eva.miller@example.com", "222-789-4561"));
+    //     contacts.add(new Contact(++count, "John", "Doe", "123 Main St", "john.doe@example.com", "123-456-7890"));
+    //     contacts.add(new Contact(++count, "Bob", "Smith", "789 Elm St", "bob.smith@example.com", "555-123-4567"));
+    //     contacts.add(new Contact(++count, "Mark Jayson", "Aguda", "125 Main St", "janedoe@gmail.com", "+639999999779"));
+    //     contacts.add(new Contact(++count, "Eva", "Miller", "567 Pine Rd", "eva.miller@example.com", "222-789-4561"));
 
-    }
+    // }
 
     // Method to getAllContacts
     public List<Contact> getAllContacts() {
@@ -124,5 +124,9 @@ public class ContactService {
         } else {
             return contactRepository.findAll(pageable);
         }
+    }
+
+    public List<Contact> findByUsername(String username) {
+        return contactRepository.findByUsername(username);
     }
 }
