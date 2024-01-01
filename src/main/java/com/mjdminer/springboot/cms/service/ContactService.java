@@ -110,7 +110,6 @@ public class ContactService {
         return this.contactRepository.findAll(pageable);
     }
 
-    // Add this method to the ContactService.java
     public Page<Contact> findPaginated(int pageNo, String query, int pageSize, String sortField, String sortDirection) {
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending()
                 : Sort.by(sortField).descending();
