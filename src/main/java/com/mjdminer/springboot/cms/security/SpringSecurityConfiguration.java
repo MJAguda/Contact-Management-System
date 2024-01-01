@@ -18,8 +18,9 @@ public class SpringSecurityConfiguration {
     public InMemoryUserDetailsManager createUserDetailsManager() {
 
         UserDetails userDetails1 = createNewUser("admin", "admin");
+        UserDetails userDetails2 = createNewUser("user", "user");
 
-        return new InMemoryUserDetailsManager(userDetails1);
+        return new InMemoryUserDetailsManager(userDetails1, userDetails2);
     }
 
     private UserDetails createNewUser(String username, String password) {
@@ -55,3 +56,4 @@ public class SpringSecurityConfiguration {
         return http.build();
     }
 }
+
