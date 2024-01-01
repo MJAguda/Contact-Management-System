@@ -182,9 +182,9 @@ public class ContactControllerJpa {
         return "index";
     }
 
-    // @GetMapping("/login")
-    // public String showLoginPage() {
-    //     return "login";
-    // }
+    @GetMapping("/login")
+    public String showLoginPage() {
+        return "login";
+    }
 
 }
