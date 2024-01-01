@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="css/login-styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <main id="main">
+        <div class="login-container">
+            <h2 class="text-center">Login</h2>
+
+            <!-- Display Spring Security error messages -->
+            <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                Invalid username or password!
+            </div>
+
+            <form action="/login" method="post" id="login-form">
+
+                <div class="input-group">
+                    <input class="input" type="text" name="username" required>
+                    <label class="label" for="username">Username</label>
+                </div>
+
+                <div class="input-group">
+                    <input class="input" type="text" name="password" required>
+                    <label class="label" for="password">Password</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+
+                <br>
+                <p>Don't have an account? <a href="/register">Register</a></p>
+            </form>
+
+        </div>
+    </main>
+
+    <!-- Add Bootstrap JS and Popper.js (for Bootstrap modal and tooltip) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+<style>
+    :root {
+        --background: #004643;
+        --headline: #fffffe;
+        --paragraph: #abd1c6;
+        --button: #f9bc60;
+        --button-text: #001e1d;
+        --stroke: #001e1d;
+        --main: #e8e4e6;
+        --highlight: #f9bc60;
+        --secondary: #abd1c6;
+        --tertiary: #e16162;
+    }
+
+    body {
+        background-color: var(--background);
+    }
+
+    .login-container {
+        max-width: 400px;
+        margin: 100px auto;
+        background-color: var(--main);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    body h2,
+    label {
+        color: var(--stroke);
+    }
+
+    #login-form {
+        /* width: 30%; */
+        margin: auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #login-form input {
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    #login-form .btn {
+        width: 100%;
+        max-width: 200px;
+        background-color: var(--button);
+        color: var(--button-text);
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .input-group {
+        position: relative;
+    }
+
+    .input {
+        width: 100%;
+        border: solid 1.5px var(--stroke);
+        border-radius: 1rem;
+        background: none;
+        padding: 1rem;
+        font-size: 1rem;
+        color: var(--stroke);
+        transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .label {
+        position: absolute;
+        left: 15px;
+        color: var(--stroke);
+        pointer-events: none;
+        transform: translateY(1rem);
+        transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .input:focus,
+    input:valid {
+        outline: none;
+        border: 1.5px solid var(--highlight);
+    }
+
+    .input:focus~label,
+    input:valid~label {
+        transform: translateY(-50%) scale(0.8);
+        background-color: var(--main);
+        padding: 0 .2em;
+        color: var(--highlight);
+    }
+
+    p {
+        color: var(--stroke);
+    }
+</style>
+
+</html>
