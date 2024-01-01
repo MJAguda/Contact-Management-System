@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mjdminer.springboot.cms.model.Contact;
+import com.mjdminer.springboot.cms.respository.ContactRepository;
 import com.mjdminer.springboot.cms.service.ContactService;
 
 import jakarta.validation.Valid;
@@ -25,11 +26,13 @@ public class ContactControllerJpa {
 
     @Autowired
     private ContactService contactService;
+    private ContactRepository contactRepository;
 
     // The pupose of thie Constructor is to inject the ContactService dependency
-    public ContactControllerJpa(ContactService contactService) {
+    public ContactControllerJpa(ContactService contactService, ContactRepository contactRepository) {
         super();
         this.contactService = contactService;
+        this.contactRepository = contactRepository;
     }
 
     private String getLoggedInUserName(ModelMap model) {
@@ -40,22 +43,18 @@ public class ContactControllerJpa {
     // GetMapping for localhost:8080/
     @GetMapping("/")
     public String listAllContacts(ModelMap model) {
-
-        // List<Contact> contacts = contactService.getAllContacts();
-
-        // model.addAttribute("contacts", contacts);
-        // // return to index.html
-        // return "index";
-
         String username = getLoggedInUserName(model);
+
         List<Contact> contacts = contactService.findByUsername(username);
         model.addAttribute("contacts", contacts);
 
+        // TODO: Figure out why this return all contacts instead of just the logged in
+        // user's contacts
         return findPaginated(1, "", "firstName", "asc", model);
+        // return "index";
     }
 
     // GetMapping for localhost:8080/add-contact
-    // TODO: Include username
     @GetMapping("/add-contact")
     public String showNewContactPage(ModelMap model) {
         // return to contact.html
@@ -63,7 +62,6 @@ public class ContactControllerJpa {
     }
 
     // PostMapping for localhost:8080/add-contact
-    // TODO: Include username
     @PostMapping("/add-contact")
     public String addNewContactPage(@ModelAttribute("contact") @Valid Contact contact, BindingResult result,
             ModelMap model) {
@@ -73,11 +71,9 @@ public class ContactControllerJpa {
             return "details";
         }
 
-        contactService.addContact(contact.getFirstName(),
-                contact.getLastName(),
-                contact.getAddress(),
-                contact.getEmail(),
-                contact.getContactNumber());
+        String username = getLoggedInUserName(model);
+        contact.setUsername(username);
+        contactRepository.save(contact);
 
         model.addAttribute("successMessage", "Contact successfully added!");
         return "redirect:/";
@@ -94,14 +90,10 @@ public class ContactControllerJpa {
     @GetMapping("/update-contact")
     public String showUpdateContactPage(@RequestParam int id, ModelMap model) {
         Contact contact = contactService.findById(id);
-
         model.addAttribute("contact", contact);
-
-        // return to contact.html
         return "details";
     }
 
-    // TODO: Include username
     @PostMapping("/update-contact")
     public String updateContact(@ModelAttribute("contact") @Valid Contact contact, BindingResult result,
             ModelMap model) {
@@ -110,6 +102,8 @@ public class ContactControllerJpa {
             model.addAttribute("errors", result.getAllErrors());
             return "details";
         }
+        String username = getLoggedInUserName(model);
+        contact.setUsername(username);
 
         contactService.updateContact(contact);
         return "redirect:/";
@@ -151,7 +145,7 @@ public class ContactControllerJpa {
 
         return "index";
     }
-
+    
     @GetMapping("/page/{pageNo}")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
             @RequestParam(required = false) String query, @RequestParam("sortField") String sortField,
@@ -170,9 +164,7 @@ public class ContactControllerJpa {
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("query", query);
-        // model.addAttribute("totalPages", allContacts.size() / pageSize);
-        model.addAttribute("totalPages", (int) Math.ceil((double) allContacts.size() / pageSize)); // Adjust totalPages
-                                                                                                   // calculation
+        model.addAttribute("totalPages", (int) Math.ceil((double) allContacts.size() / pageSize));
         model.addAttribute("totalItems", allContacts.size());
         model.addAttribute("contacts", contacts);
         model.addAttribute("sortField", sortField);
