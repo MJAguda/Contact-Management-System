@@ -32,11 +32,7 @@ function setPageTitle() {
 
         // Disable the input fields
         // $("#id").prop('disabled', true);
-        $("#firstName").prop('disabled', true);
-        $("#lastName").prop('disabled', true);
-        $("#address").prop('disabled', true);
-        $("#email").prop('disabled', true);
-        $("#contactNumber").prop('disabled', true);
+        $(".input").prop('disabled', true);
 
         // Change value of the button
         $('.btn-success').val('Home');
